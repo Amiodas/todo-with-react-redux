@@ -1,13 +1,13 @@
-import './App.css'
-import { Button } from './components/ui/button'
+import "./App.css";
+import Container from "./components/ui/Container";
+import Todo from "./pages/Todo/Todo";
 
 function App() {
   return (
-    <>
-      <h1>Todo</h1>
-      <Button>Add todo</Button>
-    </>
-  )
+    <Container>
+      <Todo />
+    </Container>
+  );
 }
 
-export default App
+export default App;
