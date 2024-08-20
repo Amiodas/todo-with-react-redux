@@ -15,7 +15,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { addTodo } from "@/redux/features/todoSlice";
 
 const AddTodoModal = () => {
-  const [task, setTask] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const dispatch = useAppDispatch();
   const handleSubmit = (e: FormEvent) => {
@@ -23,7 +23,7 @@ const AddTodoModal = () => {
     const randomString = Math.random().toString(36).substring(2, 7);
     const taskDetails = {
       id: randomString,
-      task: task,
+      title: title,
       description: description,
     };
     dispatch(addTodo(taskDetails));
@@ -60,17 +60,17 @@ const AddTodoModal = () => {
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="task" className="text-right">
+              <Label htmlFor="title" className="text-right">
                 Task
               </Label>
               <Input
-                id="task"
-                name="task"
-                defaultValue={task}
+                id="title"
+                name="title"
+                defaultValue={title}
                 onBlur={(e) => {
-                  setTask(e.target.value);
+                  setTitle(e.target.value);
                 }}
-                placeholder="Enter task"
+                placeholder="Enter title"
                 className="col-span-3"
               />
             </div>
