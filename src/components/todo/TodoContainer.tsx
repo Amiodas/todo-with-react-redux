@@ -22,11 +22,7 @@ const TodoContainer = () => {
           <div className="bg-white w-full h-full rounded-lg p-2 space-y-2">
             {todos?.map((todo) => (
               <div key={todo.id}>
-                <TodoCard
-                  id={todo.id}
-                  title={todo.title}
-                  description={todo.description}
-                />
+                <TodoCard {...todo} />
               </div>
             ))}
           </div>

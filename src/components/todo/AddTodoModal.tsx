@@ -32,7 +32,7 @@ const AddTodoModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" className="bg-primary text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
