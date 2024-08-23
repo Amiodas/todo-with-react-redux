@@ -22,7 +22,7 @@ const TodoCard = ({
     dispatch(toggleComplete(id));
   };
   return (
-    <div className="bg-white rounded-md flex justify-between items-center p-3 border">
+    <div className="bg-slate-200 rounded-md flex justify-between items-center p-3 border">
       <input
         className="mr-3"
         defaultChecked={isCompleted}

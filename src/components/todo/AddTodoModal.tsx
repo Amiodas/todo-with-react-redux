@@ -49,7 +49,6 @@ const AddTodoModal = () => {
       isCompleted: false,
     };
     // dispatch(addTodo(taskDetails));
-    console.log(taskDetails);
     addTodo(taskDetails);
   };
   return (
