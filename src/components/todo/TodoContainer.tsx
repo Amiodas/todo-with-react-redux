@@ -7,7 +7,7 @@ import { useGetTodosQuery } from "@/redux/api/api";
 const TodoContainer = () => {
   // const { todos } = useAppSelector((state) => state.todos);
   const { data: todos, isLoading, isError } = useGetTodosQuery(undefined);
-  
+
   console.log(todos, isError);
   if (isLoading) {
     return <p>Loading...</p>;
@@ -27,8 +27,8 @@ const TodoContainer = () => {
           </div>
         ) : (
           <div className="bg-white w-full h-full rounded-lg p-2 space-y-2">
-            {todos?.map((todo) => (
-              <div key={todo.id}>
+            {todos?.data?.map((todo, index) => (
+              <div key={index}>
                 <TodoCard {...todo} />
               </div>
             ))}

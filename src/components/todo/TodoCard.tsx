@@ -7,9 +7,16 @@ type TTodoCardProps = {
   title: string;
   description: string;
   isCompleted?: boolean;
+  priority: string;
 };
 
-const TodoCard = ({ id, title, description, isCompleted }: TTodoCardProps) => {
+const TodoCard = ({
+  id,
+  title,
+  description,
+  priority,
+  isCompleted,
+}: TTodoCardProps) => {
   const dispatch = useAppDispatch();
   const handleTaskComplete = () => {
     dispatch(toggleComplete(id));
@@ -17,24 +24,32 @@ const TodoCard = ({ id, title, description, isCompleted }: TTodoCardProps) => {
   return (
     <div className="bg-white rounded-md flex justify-between items-center p-3 border">
       <input
+        className="mr-3"
         defaultChecked={isCompleted}
         onClick={handleTaskComplete}
         type="checkbox"
         name="complete"
         id="complete"
       />
-      <p className="font-semibold">{title}</p>
-      {/* <p className="font-semibold">Time</p> */}
-      {isCompleted ? (
-        <p className="bg-green-500 text-white p-2 rounded-full font-semibold">
-          Done
-        </p>
-      ) : (
-        <p className="bg-red-500 text-white p-2 rounded-full font-semibold">
-          Pending
-        </p>
-      )}
-      <p className="font-semibold">{description}</p>
+      <p className="font-semibold flex-1">{title}</p>
+      <div className="flex-1 flex justify-start items-center gap-2">
+        <div
+          className={`size-2 rounded-full ${
+            priority === "high" ? "bg-red-500" : null
+          } ${priority === "medium" ? "bg-yellow-500" : null} ${
+            priority === "low" ? "bg-green-500" : null
+          }`}
+        ></div>
+        <p className="font-semibold">{priority}</p>
+      </div>
+      <div className="flex-1">
+        {isCompleted ? (
+          <p className="text-green-500 p-2 rounded-full font-semibold">Done</p>
+        ) : (
+          <p className="text-red-500 p-2 rounded-full font-semibold">Pending</p>
+        )}
+      </div>
+      <p className="font-semibold flex-[2]">{description}</p>
       <div className="space-x-5">
         <Button className="bg-red-500" onClick={() => dispatch(removeTodo(id))}>
           <svg
