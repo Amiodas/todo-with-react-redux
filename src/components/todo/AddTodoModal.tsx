@@ -11,7 +11,7 @@ import {
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useAddTodosMutation } from "@/redux/api/api";
+import { useAddTodoMutation } from "@/redux/api/api";
 import {
   Select,
   SelectContent,
@@ -35,7 +35,7 @@ const AddTodoModal = () => {
 
   // For server storage
   const [addTodo, { data, isLoading, isSuccess, isError }] =
-    useAddTodosMutation();
+    useAddTodoMutation();
   console.log({ data, isLoading, isSuccess, isError });
 
   const handleSubmit = (e: FormEvent) => {

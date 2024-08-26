@@ -1,9 +1,9 @@
-import { removeTodo, toggleComplete } from "@/redux/features/todoSlice";
 import { Button } from "../ui/button";
-import { useAppDispatch } from "@/redux/hook";
+// import { useAppDispatch } from "@/redux/hook";
+import { useRemoveTodoMutation, useUpdateTodoMutation } from "@/redux/api/api";
 
 type TTodoCardProps = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   isCompleted?: boolean;
@@ -11,15 +11,27 @@ type TTodoCardProps = {
 };
 
 const TodoCard = ({
-  id,
+  _id,
   title,
   description,
   priority,
   isCompleted,
 }: TTodoCardProps) => {
-  const dispatch = useAppDispatch();
+  const [updateTodo] = useUpdateTodoMutation();
+  const [removeTodo] = useRemoveTodoMutation();
+  // const dispatch = useAppDispatch();
   const handleTaskComplete = () => {
-    dispatch(toggleComplete(id));
+    const taskData = {
+      id: _id,
+      data: {
+        title,
+        description,
+        priority,
+        isCompleted: !isCompleted,
+      },
+    };
+    updateTodo(taskData);
+    // dispatch(toggleComplete(id));
   };
   return (
     <div className="bg-slate-200 rounded-md flex justify-between items-center p-3 border">
@@ -51,7 +63,7 @@ const TodoCard = ({
       </div>
       <p className="font-semibold flex-[2]">{description}</p>
       <div className="space-x-5">
-        <Button className="bg-red-500" onClick={() => dispatch(removeTodo(id))}>
+        <Button className="bg-red-500" onClick={() => removeTodo(_id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
